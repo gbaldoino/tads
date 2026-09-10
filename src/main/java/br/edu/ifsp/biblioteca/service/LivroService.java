@@ -21,21 +21,21 @@ public class LivroService {
     public Livro cadastrar (Livro livro) {
 
         if (livro.getTitulo() == null || livro.getTitulo().isEmpty()) {
-            throw new ErroCadastroException("O Título é Obrigatório!");
+            throw new RegraDeNegocioException("O Título é Obrigatório!");
         }
 
         if (livro.getIsbn() == null || livro.getIsbn().isEmpty()) {
-            throw new ErroCadastroException("ISBN é Obrigatório!");
+            throw new RegraDeNegocioException("ISBN é Obrigatório!");
         }
 
         if (livro.getAnoPublicacao() <= 0) {
-            throw new ErroCadastroException("O ano de publicação deve ser maior que 0!");
+            throw new RegraDeNegocioException("O ano de publicação deve ser maior que 0!");
         }
 
         Optional<Livro> livroJaCadastradoOptional = this.livroRepository.buscarPorIsbn(livro.getIsbn());
 
         if (livroJaCadastradoOptional.isPresent()) {
-            throw new ErroCadastroException("Já existe um livro cadastrado com o ISBN: " + livro.getIsbn());
+            throw new RegraDeNegocioException("Já existe um livro cadastrado com o ISBN: " + livro.getIsbn());
         }
 
         Livro livroCadastrado = this.livroRepository.salvar(livro);

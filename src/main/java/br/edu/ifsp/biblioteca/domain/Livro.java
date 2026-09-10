@@ -19,6 +19,7 @@ public class Livro {
         this.titulo = titulo;
         this.anoPublicacao = anoPublicacao;
         this.listaDeExemplares = new ArrayList<>();
+        this.autores = new ArrayList<>();
     }
 
     public Long getId() {
@@ -57,11 +58,7 @@ public class Livro {
         this.listaDeExemplares.add(item);
     }
 
-    public void adicionarAutor (Autor autor) {
-
-     this.autores.add(autor);
-
-    }
+    public void adicionarAutor (Autor autor) { this.autores.add(autor); }
 
     @Override
     public String toString() {

@@ -6,6 +6,7 @@ import br.edu.ifsp.biblioteca.repository.ILivroRepository;
 import br.edu.ifsp.biblioteca.repository.IUsuarioRepository;
 import br.edu.ifsp.biblioteca.repository.UsuarioRepositoryEmMemoria;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UsuarioService {
@@ -51,6 +52,10 @@ public class UsuarioService {
             throw new RegraDeNegocioException("Já existe um usuário com o e-mail: " + email);
         }
 
+    }
+
+    public List<Usuario> listarTodos() {
+        return this.usuarioRepository.listarTodos();
     }
 
 }

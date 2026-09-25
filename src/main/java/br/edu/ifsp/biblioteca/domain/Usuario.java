@@ -1,6 +1,8 @@
 package br.edu.ifsp.biblioteca.domain;
 
 public class Usuario {
+
+    private Long id;
     private String nome;
     private String email;
 
@@ -9,6 +11,13 @@ public class Usuario {
         this.email = email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -29,6 +38,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
+                "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 '}';

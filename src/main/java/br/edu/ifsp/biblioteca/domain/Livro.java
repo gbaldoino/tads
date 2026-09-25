@@ -12,9 +12,7 @@ public class Livro {
     private List<Exemplar> listaDeExemplares;
     private List<Autor> autores;
 
-
     public Livro(String isbn, String titulo, Integer anoPublicacao) {
-
         this.isbn = isbn;
         this.titulo = titulo;
         this.anoPublicacao = anoPublicacao;
@@ -58,15 +56,27 @@ public class Livro {
         this.listaDeExemplares.add(item);
     }
 
-    public void adicionarAutor (Autor autor) { this.autores.add(autor); }
+    public void adicionarAutor(Autor autor) {
+        this.autores.add(autor);
+    }
+
+    public List<Autor> getAutores(){
+        return this.autores;
+    }
+
+    public List<Exemplar> getExemplares(){
+        return this.listaDeExemplares;
+    }
+
+
 
     @Override
     public String toString() {
-       return "Livro{" +
-               "id=" + id +
-               ", isbn='" + isbn + '\'' +
-               ", titulo='" + titulo + '\'' +
-              ", anoPublicacao=" + anoPublicacao +
+        return "Livro{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", anoPublicacao=" + anoPublicacao +
                 '}';
     }
 }

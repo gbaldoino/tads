@@ -2,13 +2,13 @@ package br.edu.ifsp.biblioteca.service;
 
 import br.edu.ifsp.biblioteca.domain.Usuario;
 import br.edu.ifsp.biblioteca.exception.RegraDeNegocioException;
-import br.edu.ifsp.biblioteca.repository.ILivroRepository;
 import br.edu.ifsp.biblioteca.repository.IUsuarioRepository;
-import br.edu.ifsp.biblioteca.repository.UsuarioRepositoryEmMemoria;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsuarioService {
 
     private final IUsuarioRepository usuarioRepository;
@@ -17,13 +17,13 @@ public class UsuarioService {
         this.usuarioRepository = repository;
     }
 
-    public Usuario cadastrar (Usuario usuario) {
+    public Usuario cadastrar(Usuario usuario) {
 
-        if(usuario.getNome() == null || usuario.getNome().isEmpty()) {
+        if (usuario.getNome() == null || usuario.getNome().isEmpty()) {
             throw new RegraDeNegocioException("Nome é obrigatório");
         }
 
-        if(usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
+        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
             throw new RegraDeNegocioException("E-mail é obrigatório");
         }
 
@@ -41,21 +41,19 @@ public class UsuarioService {
         }
 
         throw new RegraDeNegocioException("Usuário não encontrado: " + id);
-
-
     }
 
-    public void validarEmail (String email) {
+    private void validarEmail(String email) {
         Optional<Usuario> usuarioOptional = this.usuarioRepository.buscarPorEmail(email);
 
         if (usuarioOptional.isPresent()) {
-            throw new RegraDeNegocioException("Já existe um usuário com o e-mail: " + email);
+            throw new RegraDeNegocioException(
+                    "Já existe um usuário cadastrado com o e-mail: " + email
+            );
         }
-
     }
 
     public List<Usuario> listarTodos() {
         return this.usuarioRepository.listarTodos();
     }
-
 }

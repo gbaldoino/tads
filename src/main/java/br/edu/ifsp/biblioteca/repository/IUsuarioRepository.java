@@ -8,7 +8,9 @@ import java.util.Optional;
 public interface IUsuarioRepository {
 
     Usuario salvar(Usuario usuario);
+
     Optional<Usuario> buscarPorId(Long id);
+
     Optional<Usuario> buscarPorEmail(String email);
 
     List<Usuario> listarTodos();
